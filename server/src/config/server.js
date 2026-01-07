@@ -6,7 +6,8 @@ const app = express();
 
 const allowedOrigins = [
   "https://khalita.two-dd.com", 
-  "http://localhost:5173"       
+  "http://localhost:5173",     
+  "http://localhost:5174",     
 ];
 
 app.use(cors({
