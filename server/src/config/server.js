@@ -12,7 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: true }));
 
 app.get('/', (req, res) => {
-  res.send('Backend activo');
+  res.json({
+    status: 'ok',
+    message: 'Backend activo',
+  });
 });
 
 app.use('/experiencia', routeExperiencia);
@@ -24,5 +27,5 @@ dbclient.connect()
   .catch(err => console.error('Error Mongo:', err.message));
 
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor activo en el puerto ${PORT}`);
+  console.log(`Servidor activo en el puerto ${PORT}`);
 });
