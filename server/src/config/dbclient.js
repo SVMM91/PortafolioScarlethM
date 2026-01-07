@@ -3,7 +3,7 @@ import 'dotenv/config';
 
 class DBClient {
     constructor() {
-        const queryString = `mongodb+srv://${process.env.USER_DB}:${process.env.PASS_DB}@${process.env.SERVER_DB}/?appName=mascotasTest`;
+        const queryString = `mongodb+srv://${process.env.USER_DB}:${process.env.PASS_DB}@${process.env.SERVER_DB}/?appName=experiencia`;
         this.client = new MongoClient(queryString);
         this.db = null;
     }
