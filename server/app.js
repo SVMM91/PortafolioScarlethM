@@ -1,13 +1,18 @@
-import { useEffect } from 'react'
+import express from 'express'
+import cors from 'cors'
+import experienciaRoutes from './routes/experiencia.js'
 
-function App() {
-  useEffect(() => {
-    fetch('https://portafolioscarlethm-production.up.railway.app/experiencia')
-      .then(res => res.json())
-      .then(data => console.log(data))
-  }, [])
+const app = express()
 
-  return <h1>App</h1>
-}
+app.use(cors())
+app.use(express.json())
 
-export default App
+// Prefijo único para la API
+app.use('/api', experienciaRoutes)
+
+// Ruta raíz para comprobar que el backend está vivo
+app.get('/', (req, res) => {
+  res.json({ ok: true, message: 'Backend activo 🚀' })
+})
+
+export default app
