@@ -9,9 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-router.get('/experiencia', (req, res) => {
-  res.json({ mensaje: 'Experiencia OK' })
-})
+app.get('/api/experiencia', (req, res) => {
+  res.json({ mensaje: 'Experiencia OK' });
+});
 
 const PORT = process.env.PORT || 3000;
 
