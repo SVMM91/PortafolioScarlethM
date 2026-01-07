@@ -15,7 +15,6 @@ class DBClient {
             console.log('Conectado al serv db');
         }
         return this.db;
-       //console.log("SERVER_DB:", process.env.SERVER_DB);
     }
     
 }

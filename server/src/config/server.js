@@ -3,21 +3,14 @@ import express from 'express';
 import routeExperiencia from '../routes/experiencia.js'; 
 import dbclient from './dbclient.js';
 import cors from "cors";
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const app = express();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use(cors({
-  origin: [
-    "https://khalita.two-dd.com/",
-    "http://localhost:5173",
-  ]
+  origin: true
 }));
 
 app.use('/experiencia', routeExperiencia);
@@ -25,7 +18,7 @@ app.use('/experiencia', routeExperiencia);
 async function startServer() {
   try {
     await dbclient.connect();
-    const PORT = process.env.PORT || 8000;
+    const PORT = process.env.PORT || 3000;
 
     app.listen(PORT, () => {
       console.log(`Servidor activo en el puerto ${PORT}`);
@@ -36,4 +29,3 @@ async function startServer() {
 }
 
 startServer();
-

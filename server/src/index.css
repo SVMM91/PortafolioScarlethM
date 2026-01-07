@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('../node_modules/bootstrap-icons/font/bootstrap-icons.css');
+
+@custom-variant dark (&:where(.dark, .dark *));
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Poiret+One&family=Shadows+Into+Light&display=swap');
+
+body {
+  @apply font-montserrat;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.splide__slide img {
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.splide__list {
+  flex-direction: row;
+}
+
+.splide__list img{
+  object-fit: contain;
+}
+
+.splide__arrows {
+  position: absolute;
+  top: 0;
+  right: 0; 
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none; 
+}
+
+.splide__arrow svg{
+  width: 25px;
+}
+
+.splide__arrow {
+  pointer-events: all;
+  transform: none;
+}
+
+.splide__track--nav>.splide__list>.splide__slide.is-active{
+  border: none!important;
+}
+
+.splide__slide.is-visible.is-active img{
+    opacity: 1;
+}
+
+.splide__arrows--ttb {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.splide__arrow--prev {
+  transform: rotate(-90deg);
+  top: 0px!important;
+}
+
+.splide__arrow--next {
+  transform: rotate(90deg);
+}
