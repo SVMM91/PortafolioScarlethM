@@ -22,16 +22,13 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import experienciaRoutes from './routes/experiencia.js'; 
-
+import experienciaRoutes from '../routes/experiencia.js'; 
 dotenv.config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-
 app.use('/api', experienciaRoutes);
 
 const PORT = process.env.PORT || 3000;
