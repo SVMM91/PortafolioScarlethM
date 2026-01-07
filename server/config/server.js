@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: [
-    "https://two-dd.com/",
+    "https://khalita.two-dd.com/",
     "http://localhost:5173",
   ]
 }));
