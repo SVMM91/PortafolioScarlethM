@@ -13,6 +13,17 @@ class AllController {
     }
   }
 
+  
+  async getAll(req, res) {
+    try {
+      const data = await AllModels.getAll();
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+
   async getOne(req, res) {
     try {
       const { id } = req.params;
@@ -27,15 +38,6 @@ class AllController {
         return res.status(404).json({ message: 'Documento no encontrado' });
       }
 
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  }
-
-  async getAll(req, res) {
-    try {
-      const data = await AllModels.getAll();
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ message: error.message });

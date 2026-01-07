@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/api/experiencia', experienciaRoutes);
+app.use('/api', experienciaRoutes);
 
 app.get('/', (req, res) => {
   res.json({ ok: true, message: 'Backend activo' });
