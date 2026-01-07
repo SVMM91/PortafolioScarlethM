@@ -1,24 +1,26 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import experienciaRoutes from '../routes/experiencia.js'; 
-dotenv.config();
+import express from "express";
+import cors from "cors";
+import experienciaRoutes from "./routes/experiencia.js";
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+const allowedOrigins = [
+  "https://khalita.two-dd.com", 
+  "http://localhost:5173"       
+];
+
 app.use(cors({
-  origin: 'https://khalita.two-dd.com' 
+  origin: function(origin, callback){
+    if(!origin || allowedOrigins.includes(origin)){
+      callback(null, true);
+    } else {
+      callback(new Error("No permitido por CORS"));
+    }
+  }
 }));
 
-
-// router en /api/experiencia
-app.use('/api/experiencia', experienciaRoutes);
-
-app.get('/', (req, res) => {
-  res.json({ ok: true, message: 'Backend activo' });
-});
+app.use(express.json());
+app.use("/api", experienciaRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
