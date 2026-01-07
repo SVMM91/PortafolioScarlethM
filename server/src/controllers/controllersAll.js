@@ -2,43 +2,34 @@ import AllModels from '../models/AllModels.js';
 import { ObjectId } from 'mongodb';
 
 class AllController {
-  constructor() {}
-
-  async create(req, res) {
-    try {
-      const data = await AllModels.create(req.body);
-      res.status(201).json(data);
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
-  }
-
-  
   async getAll(req, res) {
     try {
       const data = await AllModels.getAll();
+      res.status(200).json(data); // Devuelve todos los documentos
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  async getOne(req, res) {
+    try {
+      const { id } = req.params;
+      if (!ObjectId.isValid(id)) {
+        return res.status(400).json({ message: 'ID inválido' });
+      }
+      const data = await AllModels.getOne(id);
+      if (!data) return res.status(404).json({ message: 'Documento no encontrado' });
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
 
-
-  async getOne(req, res) {
+  async create(req, res) {
     try {
-      const { id } = req.params;
-
-      if (!ObjectId.isValid(id)) {
-        return res.status(400).json({ message: 'ID inválido' });
-      }
-
-      const data = await AllModels.getOne(id);
-
-      if (!data) {
-        return res.status(404).json({ message: 'Documento no encontrado' });
-      }
-
-      res.status(200).json(data);
+      const data = await AllModels.create(req.body);
+      res.status(201).json(data);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -46,8 +37,9 @@ class AllController {
 
   async upDate(req, res) {
     try {
-      const { ...data } = req.body;
-      const result = await AllModels.upDate(data);
+      const { id } = req.params;
+      if (!ObjectId.isValid(id)) return res.status(400).json({ message: 'ID inválido' });
+      const result = await AllModels.upDate(id, req.body);
       res.status(200).json(result);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -62,7 +54,7 @@ class AllController {
         deletedCount: result.deletedCount
       });
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(500).json({ message: error.message });
     }
   }
 }
