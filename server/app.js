@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import experienciaRoutes from './routes/experiencia.js';
+import experienciaRoutes from './src/routes/experiencia.js';
 
 const app = express();
 
