@@ -1,12 +1,13 @@
-import express from 'express'
-import cors from 'cors'
-import experienciaRoutes from './routes/experiencia.js'
+import { useEffect } from 'react'
 
-const app = express()
+function App() {
+  useEffect(() => {
+    fetch('https://portafolioscarlethm-production.up.railway.app/experiencia')
+      .then(res => res.json())
+      .then(data => console.log(data))
+  }, [])
 
-app.use(cors())
-app.use(express.json())
+  return <h1>App</h1>
+}
 
-app.use('/api', experienciaRoutes)
-
-export default app
+export default App
