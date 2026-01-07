@@ -9,12 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.json({
-    ok: true,
-    message: 'Backend activo y respondiendo JSON 🚀',
-  });
-});
+router.get('/experiencia', (req, res) => {
+  res.json({ mensaje: 'Experiencia OK' })
+})
 
 const PORT = process.env.PORT || 3000;
 
